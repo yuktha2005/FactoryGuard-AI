@@ -11,29 +11,29 @@ from .leakage_checks import check_data_leakage
 from ..config import PROCESSED_DATA_PATH
 
 def run_pipeline():
-    print("📥 Loading raw sensor data...")
+    print("Loading raw sensor data...")
     df = load_data()
 
-    print("🧹 Cleaning missing values...")
+    print(" Cleaning missing values...")
     df = clean_data(df)
 
-    print("🧠 Creating lag features...")
+    print("Creating lag features...")
     df = create_lag_features(df)
 
-    print("📊 Creating rolling statistics...")
+    print("Creating rolling statistics...")
     df = create_rolling_features(df)
 
-    print("🔍 Checking for data leakage...")
+    print("Checking for data leakage...")
     check_data_leakage(df)
 
-    print("🧽 Dropping NaNs from lagging...")
+    print("Dropping NaNs from lagging...")
     df = df.dropna()
 
     os.makedirs("data/processed", exist_ok=True)
     df.to_csv(PROCESSED_DATA_PATH, index=False)
 
-    print(f"✅ Week 1 dataset created → {PROCESSED_DATA_PATH}")
-    print(f"📐 Final shape: {df.shape}")
+    print(f"Week 1 dataset created → {PROCESSED_DATA_PATH}")
+    print(f"Final shape: {df.shape}")
 
 if __name__ == "__main__":
     run_pipeline()
