@@ -15,7 +15,7 @@ import os
 # 1. LOAD PROCESSED DATASET
 # =====================================
 
-processed_path = "Data/Processed/sensor_data_engineered.csv"
+processed_path = "data/processed/modeling_dataset.csv"
 df = pd.read_csv(processed_path)
 
 print("Dataset shape:", df.shape)

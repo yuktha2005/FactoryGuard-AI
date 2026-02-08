@@ -26,8 +26,8 @@ def run_pipeline():
     print("Checking for data leakage...")
     check_data_leakage(df)
 
-    print("Dropping NaNs from lagging...")
-    df = df.dropna()
+    print("Filling NaNs from lagging with 0...")
+    df = df.fillna(0)
 
     os.makedirs("data/processed", exist_ok=True)
     df.to_csv(PROCESSED_DATA_PATH, index=False)

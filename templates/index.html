@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FactoryGuard AI - Predictive Maintenance</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>FactoryGuard AI</h1>
+        <p>Predictive Maintenance System</p>
+
+        <form id="predictionForm">
+            <h2>Enter Sensor Features</h2>
+            <div class="features-grid">
+                <div class="feature-group">
+                    <h3>Basic Sensors</h3>
+                    <label for="vibration">Vibration:</label>
+                    <input type="number" step="0.01" id="vibration" name="vibration" required>
+
+                    <label for="acoustic">Acoustic:</label>
+                    <input type="number" step="0.01" id="acoustic" name="acoustic" required>
+
+                    <label for="temperature">Temperature:</label>
+                    <input type="number" step="0.01" id="temperature" name="temperature" required>
+
+                    <label for="current">Current:</label>
+                    <input type="number" step="0.01" id="current" name="current" required>
+                </div>
+
+                <div class="feature-group">
+                    <h3>IMF Components</h3>
+                    <label for="IMF_1">IMF_1:</label>
+                    <input type="number" step="0.01" id="IMF_1" name="IMF_1" required>
+
+                    <label for="IMF_2">IMF_2:</label>
+                    <input type="number" step="0.01" id="IMF_2" name="IMF_2" required>
+
+                    <label for="IMF_3">IMF_3:</label>
+                    <input type="number" step="0.01" id="IMF_3" name="IMF_3" required>
+                </div>
+
+                <div class="feature-group">
+                    <h3>Lag Features</h3>
+                    <label for="vibration_lag_1">Vibration Lag 1:</label>
+                    <input type="number" step="0.01" id="vibration_lag_1" name="vibration_lag_1" required>
+
+                    <label for="vibration_lag_2">Vibration Lag 2:</label>
+                    <input type="number" step="0.01" id="vibration_lag_2" name="vibration_lag_2" required>
+
+                    <label for="temperature_lag_1">Temperature Lag 1:</label>
+                    <input type="number" step="0.01" id="temperature_lag_1" name="temperature_lag_1" required>
+
+                    <label for="temperature_lag_2">Temperature Lag 2:</label>
+                    <input type="number" step="0.01" id="temperature_lag_2" name="temperature_lag_2" required>
+
+                    <label for="acoustic_lag_1">Acoustic Lag 1:</label>
+                    <input type="number" step="0.01" id="acoustic_lag_1" name="acoustic_lag_1" required>
+
+                    <label for="acoustic_lag_2">Acoustic Lag 2:</label>
+                    <input type="number" step="0.01" id="acoustic_lag_2" name="acoustic_lag_2" required>
+
+                    <label for="current_lag_1">Current Lag 1:</label>
+                    <input type="number" step="0.01" id="current_lag_1" name="current_lag_1" required>
+
+                    <label for="current_lag_2">Current Lag 2:</label>
+                    <input type="number" step="0.01" id="current_lag_2" name="current_lag_2" required>
+                </div>
+
+                <div class="feature-group">
+                    <h3>Rolling Stats - Vibration</h3>
+                    <label for="vibration_roll_mean_1h">Vib Roll Mean 1h:</label>
+                    <input type="number" step="0.01" id="vibration_roll_mean_1h" name="vibration_roll_mean_1h" required>
+
+                    <label for="vibration_roll_std_1h">Vib Roll Std 1h:</label>
+                    <input type="number" step="0.01" id="vibration_roll_std_1h" name="vibration_roll_std_1h" required>
+
+                    <label for="vibration_roll_mean_4h">Vib Roll Mean 4h:</label>
+                    <input type="number" step="0.01" id="vibration_roll_mean_4h" name="vibration_roll_mean_4h" required>
+
+                    <label for="vibration_roll_std_4h">Vib Roll Std 4h:</label>
+                    <input type="number" step="0.01" id="vibration_roll_std_4h" name="vibration_roll_std_4h" required>
+
+                    <label for="vibration_roll_mean_8h">Vib Roll Mean 8h:</label>
+                    <input type="number" step="0.01" id="vibration_roll_mean_8h" name="vibration_roll_mean_8h" required>
+
+                    <label for="vibration_roll_std_8h">Vib Roll Std 8h:</label>
+                    <input type="number" step="0.01" id="vibration_roll_std_8h" name="vibration_roll_std_8h" required>
+                </div>
+
+                <div class="feature-group">
+                    <h3>Rolling Stats - Temperature</h3>
+                    <label for="temperature_roll_mean_1h">Temp Roll Mean 1h:</label>
+                    <input type="number" step="0.01" id="temperature_roll_mean_1h" name="temperature_roll_mean_1h" required>
+
+                    <label for="temperature_roll_std_1h">Temp Roll Std 1h:</label>
+                    <input type="number" step="0.01" id="temperature_roll_std_1h" name="temperature_roll_std_1h" required>
+
+                    <label for="temperature_roll_mean_4h">Temp Roll Mean 4h:</label>
+                    <input type="number" step="0.01" id="temperature_roll_mean_4h" name="temperature_roll_mean_4h" required>
+
+                    <label for="temperature_roll_std_4h">Temp Roll Std 4h:</label>
+                    <input type="number" step="0.01" id="temperature_roll_std_4h" name="temperature_roll_std_4h" required>
+
+                    <label for="temperature_roll_mean_8h">Temp Roll Mean 8h:</label>
+                    <input type="number" step="0.01" id="temperature_roll_mean_8h" name="temperature_roll_mean_8h" required>
+
+                    <label for="temperature_roll_std_8h">Temp Roll Std 8h:</label>
+                    <input type="number" step="0.01" id="temperature_roll_std_8h" name="temperature_roll_std_8h" required>
+                </div>
+
+                <div class="feature-group">
+                    <h3>Rolling Stats - Acoustic</h3>
+                    <label for="acoustic_roll_mean_1h">Acoustic Roll Mean 1h:</label>
+                    <input type="number" step="0.01" id="acoustic_roll_mean_1h" name="acoustic_roll_mean_1h" required>
+
+                    <label for="acoustic_roll_std_1h">Acoustic Roll Std 1h:</label>
+                    <input type="number" step="0.01" id="acoustic_roll_std_1h" name="acoustic_roll_std_1h" required>
+
+                    <label for="acoustic_roll_mean_4h">Acoustic Roll Mean 4h:</label>
+                    <input type="number" step="0.01" id="acoustic_roll_mean_4h" name="acoustic_roll_mean_4h" required>
+
+                    <label for="acoustic_roll_std_4h">Acoustic Roll Std 4h:</label>
+                    <input type="number" step="0.01" id="acoustic_roll_std_4h" name="acoustic_roll_std_4h" required>
+
+                    <label for="acoustic_roll_mean_8h">Acoustic Roll Mean 8h:</label>
+                    <input type="number" step="0.01" id="acoustic_roll_mean_8h" name="acoustic_roll_mean_8h" required>
+
+                    <label for="acoustic_roll_std_8h">Acoustic Roll Std 8h:</label>
+                    <input type="number" step="0.01" id="acoustic_roll_std_8h" name="acoustic_roll_std_8h" required>
+                </div>
+
+                <div class="feature-group">
+                    <h3>Rolling Stats - Current</h3>
+                    <label for="current_roll_mean_1h">Current Roll Mean 1h:</label>
+                    <input type="number" step="0.01" id="current_roll_mean_1h" name="current_roll_mean_1h" required>
+
+                    <label for="current_roll_std_1h">Current Roll Std 1h:</label>
+                    <input type="number" step="0.01" id="current_roll_std_1h" name="current_roll_std_1h" required>
+
+                    <label for="current_roll_mean_4h">Current Roll Mean 4h:</label>
+                    <input type="number" step="0.01" id="current_roll_mean_4h" name="current_roll_mean_4h" required>
+
+                    <label for="current_roll_std_4h">Current Roll Std 4h:</label>
+                    <input type="number" step="0.01" id="current_roll_std_4h" name="current_roll_std_4h" required>
+
+                    <label for="current_roll_mean_8h">Current Roll Mean 8h:</label>
+                    <input type="number" step="0.01" id="current_roll_mean_8h" name="current_roll_mean_8h" required>
+
+                    <label for="current_roll_std_8h">Current Roll Std 8h:</label>
+                    <input type="number" step="0.01" id="current_roll_std_8h" name="current_roll_std_8h" required>
+                </div>
+            </div>
+
+            <button type="submit">Predict Failure Risk</button>
+        </form>
+
+        <div id="results" class="results" style="display: none;">
+            <h2>Prediction Results</h2>
+            <div class="charts-container">
+                <div class="chart-item">
+                    <h3>Failure Probability</h3>
+                    <canvas id="failureChart" width="300" height="300"></canvas>
+                </div>
+                <div class="chart-item">
+                    <h3>Top Risk Factors</h3>
+                    <canvas id="riskChart" width="400" height="300"></canvas>
+                </div>
+            </div>
+            <div id="failureProbability"></div>
+            <div id="riskFactors"></div>
+        </div>
+
+        <div id="error" class="error" style="display: none;"></div>
+    </div>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
